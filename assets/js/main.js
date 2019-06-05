@@ -1048,12 +1048,12 @@ var update=function() {
 			if(!levelFile.readyLoad)
 			{
 				levelFile.readyLoad=true;
-				//setTimeout(function(){
-					levelFile.blockedKeys=true;
-					//console.log(toolsGame.mainElements.player.obj.position.y);
-                    //toolsGame.mainElements.player.obj.position.y = toolsGame.mainElements.player.obj.position.y - 50;
-                    toolsGame.mainElements.player.obj.body.bounce.y = .9;
-				//},100);
+
+				levelFile.blockedKeys=true;
+				//console.log(toolsGame.mainElements.player.obj.position.y);
+				//toolsGame.mainElements.player.obj.position.y = toolsGame.mainElements.player.obj.position.y - 50;
+				toolsGame.mainElements.player.obj.body.bounce.y = .9;
+
 				setTimeout(function(){
 					levelFile.activeIdLevel=parseInt(map.tilesets["0"].properties.id)+1;
 					//alert(id);
