@@ -1054,6 +1054,33 @@ var update=function() {
 				//toolsGame.mainElements.player.obj.position.y = toolsGame.mainElements.player.obj.position.y - 50;
 				toolsGame.mainElements.player.obj.body.bounce.y = .9;
 
+				////
+
+				// jump for finish level
+                toolsGame.mainElements.player.obj.body.velocity.y = -330;
+                toolsGame.mainElements.player.jumpTimer = game.time.now + 330;
+
+
+                // animation jump left/right for finish level
+                var start = null;
+                var step = function(timestamp) {
+                    if (!start) start = timestamp;
+
+                    if (facing === 'right') {
+                        toolsGame.mainElements.player.obj.body.velocity.x = 100;
+
+                    } else if (facing === 'left') {
+                        toolsGame.mainElements.player.obj.body.velocity.x = -100;
+                    }
+
+                    var progress = timestamp - start;
+                    if (progress < 500) {
+                        window.requestAnimationFrame(step);
+                    }
+                }
+
+                window.requestAnimationFrame(step);
+
 				setTimeout(function(){
 					levelFile.activeIdLevel=parseInt(map.tilesets["0"].properties.id)+1;
 					//alert(id);
@@ -1377,8 +1404,8 @@ var update=function() {
 
 	    if(jumpButton.isDown)
 	    { 
-	    	if (facing == 'right') toolsGame.mainElements.player.obj.frame = 9;
-	    	else if (facing == 'left') toolsGame.mainElements.player.obj.frame = 8;
+	    	if (facing === 'right') toolsGame.mainElements.player.obj.frame = 9;
+	    	else if (facing === 'left') toolsGame.mainElements.player.obj.frame = 8;
 	    }
 
 		// shot bullet whit gun 
